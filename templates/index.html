@@ -1,0 +1,240 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="/static/css/bs5.2/bootstrap.min.css">
+  <link rel="stylesheet" href="/static/css/datatables/datatables.min.css">
+
+  <script type="text/javascript" src="/static/js/jquery-3.6.1.min.js"></script>
+  <script type="text/javascript" src="/static/js/bs5.2/bootstrap.bundle.min.js"></script>
+  <script type="text/javascript" src="/static/js/datatables/datatables.min.js"></script>
+
+  <title>Valorant Stats - Weapons</title>
+</head>
+<body class="bg-dark">
+  <!--<nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/">Valorant Weapon Stats</a>
+       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/weapons">Weapons</a>
+        </li> 
+      </ul>
+    </div>
+  </nav>-->
+
+  <div class="container-fluid">
+    <div class="row mt-3">
+      <div class="col-12">
+        <div class="card bg-secondary text-light">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-12">
+                <h3>Python Internal 2 Dashboard <span class="float-end">Sameer Bidi | 719</span></h3>
+                <hr />
+              </div>
+              <div class="col-12">
+                <h5>Following is a Dashboard related to the Weapons Data from the popular game Valorant</h5>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- <div class="row mt-3">
+      <div class="col-12">
+        <div class="card bg-dark shadow text-light">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-12">
+                <h3>Before we start, let's take a look at our Dataset</h3>
+                <hr />
+              </div>
+              <div class="col-12 ps-5 pe-5">
+                <table class="table val-datatable table-dark table-responsive">
+                  <thead>
+                    <tr>
+                      <th>
+                        Display Name
+                      </th>
+                      <th>
+                        Category
+                      </th>
+                      <th>
+                        Fire Rate
+                      </th>
+                      <th>
+                        Magazine Size
+                      </th>
+                      <th>
+                        Wall Penetration
+                      </th>
+                      <th>
+                        Head Damage
+                      </th>
+                      <th>
+                        Body Damage
+                      </th>
+                      <th>
+                        Leg Damage
+                      </th>
+                      <th>
+                        Cost
+                      </th>
+                      <th>
+                        Skin Count
+                      </th>
+                      <th>
+                        Icon
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for weapon in weapons %}
+                    <tr>
+                      <td>
+                        {{weapon.displayName}}
+                      </td>
+                      <td>
+                        {{weapon.category}}
+                      </td>
+                      <td>
+                        {{weapon.fireRate}}
+                      </td>
+                      <td>
+                        {{weapon.magazineSize}}
+                      </td>
+                      <td>
+                        {{weapon.wallPenetration}}
+                      </td>
+                      <td>
+                        {{weapon.headDamage}}
+                      </td>
+                      <td>
+                        {{weapon.bodyDamage}}
+                      </td>
+                      <td>
+                        {{weapon.legDamage}}
+                      </td>
+                      <td>
+                        {{weapon.cost}}
+                      </td>
+                      <td>
+                        {{weapon.skinCount}}
+                      </td>
+                      <td>
+                        <img class="img-fluid" width="100" src="{{weapon.displayIcon}}" />
+                      </td>
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div> -->
+
+    <div class="row mt-3">
+      <div class="col-12">
+        <div class="card bg-dark shadow text-light">
+          <div class="card-body">
+            <div id="plots_holder" class="row">
+              {% for available_plot in available_plots %}
+                <div id="plot" class="col-lg-6 col-xl-6 flex-fill mb-3">
+                  <div class="card bg-dark border-secondary shadow text-light">
+                    <div class="card-body">
+                      <div class="row">
+                        <div class="col-12">
+                          <h4>{{available_plot.title}}</h4>
+                        </div>
+                        <div class="col-12">
+                          <h6>{{available_plot.description}}</h6>
+                          <hr />
+                        </div>
+                        <div class="col-12">
+                          <div class="btn-group w-100" role="group">
+                            {% for plot_type in available_plot.types %}
+                              <button id="plot_type_btn_{{available_plot.id}}_{{plot_type.id}}" type="button" class="btn {% if plot_type.is_default %} btn-secondary {% else %} btn-outline-secondary {% endif %}" onclick="getPlotData({{available_plot.id}}, {{plot_type.id}}, this, 'plot_loader_{{available_plot.id}}', 'plot_cont_{{available_plot.id}}');">{{plot_type.type}}</button>
+                            {% endfor %}
+                          </div>
+                          <hr />
+                        </div>
+                      </div>
+                      <div id="plot_loader_{{available_plot.id}}" class="row mt-2 d-none">
+                        <div class="col-12">
+                          <h5>Getting plot data...</h5>
+                        </div>
+                        <div class="col-12">
+                          <div class="progress">
+                            <div class="progress-bar bg-secondary progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%"></div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div id="plot_cont_{{available_plot.id}}" class="col-12">
+    
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
+
+<script>
+  function getPlotData(plot_id, plot_type_id, btn_ele, plot_loader_id, plot_cont_id){
+    let plot_loader = $("#" + plot_loader_id);
+    let plot_cont = $("#" + plot_cont_id);
+    
+    btn_ele = $(btn_ele);
+    let btn_group = btn_ele.parent();
+    btn_group.children("button").each(function() {
+      $(this).removeClass("btn-secondary").addClass("btn-outline-secondary");
+    });
+    btn_ele.removeClass("btn-outline-secondary").addClass("btn-secondary");
+
+    plot_cont.html("");
+    plot_loader.removeClass("d-none");
+
+    $.ajax({
+      url: "/get_plot_data",
+      type: 'GET',
+      data: {
+        "plot_id": plot_id,
+        "plot_type_id": plot_type_id
+      },
+      success: function(res) {
+        plot_cont.html(res);
+        plot_loader.addClass("d-none");
+      },
+      error: function(e) {
+        console.log(e);
+        plot_cont.html(e.responseText);
+        plot_loader.addClass("d-none");
+      }
+    });
+  }
+
+  $(document).ready(function() {
+    {% for available_plot in available_plots %}
+    {% for plot_type in available_plot.types %}
+      {% if plot_type.is_default %}
+    getPlotData({{available_plot.id}}, {{plot_type.id}}, this, 'plot_loader_{{available_plot.id}}', 'plot_cont_{{available_plot.id}}');
+      {% endif %}
+    {% endfor %}
+  {% endfor %}
+  });
+</script>
