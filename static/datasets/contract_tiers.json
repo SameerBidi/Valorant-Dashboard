@@ -1,0 +1,72 @@
+[
+  {
+    "chapter": 1,
+    "type": "Spray",
+    "xp": 20000,
+    "vpCost": 200,
+    "isPurchasableWithVP": true
+  },
+  {
+    "chapter": 1,
+    "type": "PlayerCard",
+    "xp": 30000,
+    "vpCost": 200,
+    "isPurchasableWithVP": true
+  },
+  {
+    "chapter": 1,
+    "type": "Title",
+    "xp": 40000,
+    "vpCost": 200,
+    "isPurchasableWithVP": true
+  },
+  {
+    "chapter": 1,
+    "type": "Spray",
+    "xp": 50000,
+    "vpCost": 200,
+    "isPurchasableWithVP": true
+  },
+  {
+    "chapter": 1,
+    "type": "Character",
+    "xp": 60000,
+    "vpCost": 200,
+    "isPurchasableWithVP": true
+  },
+  {
+    "chapter": 2,
+    "type": "EquippableCharmLevel",
+    "xp": 75000,
+    "vpCost": 0,
+    "isPurchasableWithVP": false
+  },
+  {
+    "chapter": 2,
+    "type": "Spray",
+    "xp": 100000,
+    "vpCost": 0,
+    "isPurchasableWithVP": false
+  },
+  {
+    "chapter": 2,
+    "type": "Title",
+    "xp": 150000,
+    "vpCost": 0,
+    "isPurchasableWithVP": false
+  },
+  {
+    "chapter": 2,
+    "type": "PlayerCard",
+    "xp": 200000,
+    "vpCost": 0,
+    "isPurchasableWithVP": false
+  },
+  {
+    "chapter": 2,
+    "type": "EquippableSkinLevel",
+    "xp": 250000,
+    "vpCost": 0,
+    "isPurchasableWithVP": false
+  }
+]
